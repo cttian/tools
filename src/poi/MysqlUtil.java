@@ -30,10 +30,11 @@ public class MysqlUtil {
 			classname = config.getVal("classname");
 			user = config.getVal("user");
 			password = config.getVal("password");
+			sql = config.getVal("sql");
 			try {
 				Class.forName(classname);// 指定连接类型
 				conn = DriverManager.getConnection(url, user, password);// 获取连接
-				pst = conn.prepareStatement("");// 准备执行语句
+				pst = conn.prepareStatement(sql);// 准备执行语句
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -46,6 +47,7 @@ public class MysqlUtil {
 				while (ret.next()) {
 					String dxid1 = ret.getString(1);
 					String dxid2 = ret.getString(2);
+					System.out.println(dxid1 +"--" + dxid2);
 					list.add(new String[] { dxid1, dxid2 });
 				} // 显示数据
 			} catch (SQLException e) {
@@ -67,7 +69,7 @@ public class MysqlUtil {
 	}
 
 	public static void main(String[] args) {
-		String path = "";
+		String path = "";//"C:\\Users\\Administrator\\Desktop\\备份20160105\\数据excel处理程序\\新建文件夹\\";
 		String out = "";
 		for (int i = 0; i < args.length; i++) {
 			if (args[i].equals("-path")) {
