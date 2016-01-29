@@ -112,9 +112,11 @@ public class DxidExcelDeal {
 		System.out.println("读取行数：" + raw.size());
 		System.out.println("dxid总数：" + eachothermap.size());
 		System.out.println("重复行数：" + existed.size());
+		raw = null;
 		if (!"".equals(path)) {
 			this.WriteCata(existed, new File(path).getParent() + "\\repeat.log", this.new ListState());
 		}
+		existed = null;
 		return eachothermap;
 	}
 
